@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeatherHomePageView" customModule="WeatherAlert" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeatherHomePageView" customModule="DemoApp" customModuleProvider="target">
             <connections>
                 <outlet property="btnAdd" destination="6VE-Wy-8F1" id="Qm0-1L-i65"/>
                 <outlet property="lblTitle" destination="iRi-F6-y5s" id="6dt-e8-6C2"/>

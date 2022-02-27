@@ -8,10 +8,8 @@
 import UIKit
 import MGSwipeTableCell
 
-class WeatherHomePageView: BaseViewController
-{
-    var presenter: WeatherHomePageViewOutput?
-    var viewModel: WeatherHomePageViewModelOutput!
+class WeatherHomePageView: BaseViewController {
+    var presenter = WeatherHomePagePresenter.shared
     
     @IBOutlet weak var lblTitle: UILabel?
     @IBOutlet weak var tbvMain: UITableView?
@@ -21,28 +19,24 @@ class WeatherHomePageView: BaseViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.viewDidLoad()
         setUpView()
-        doReloadView()
+        reloadView()
+        presenter.weatherHomePageDelegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter?.viewDidAppear()
+        presenter.viewDidAppear()
     }
     
-    // MARK:
-    // MARK:  IBACTIONS
     @IBAction func btnAddPressed(_ sender: Any) {
-        presenter?.doSelectLocation()
+        presenter.selectLocationAction(self)
     }
     
-    // MARK:
-    // MARK:  METHODS
     func setUpView() {
         tbvMain?.tableFooterView = viewAddLocation
         tbvMain?.kAddPullToRefreshCustom { [weak self] in
-            self?.presenter?.doPullToRefresh()
+            self?.presenter.doPullToRefresh()
         }
     }
 }
@@ -57,43 +51,51 @@ extension WeatherHomePageView: UITableViewDataSource, UITableViewDelegate {
             return 1
         }
 
-        let count = viewModel.getListLocationCount()
+        let count = presenter.listLocationCount
         return count == 0 ? 1 : count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = HomeCurrenLocationTableViewCell.dequeCellWithTable(tableView)
-            cell.billData(viewModel.getCurrentLocationWeatherData(), viewModel.getCurrentLocationForecastWeatherData())
+            cell.billData(presenter.currentLocationWeatherData, presenter.getCurrentLocationForecastWeatherData())
             return cell
         }
-
-        let count = viewModel.getListLocationCount()
-        if count == 0 {
+        
+        if presenter.listFavorite.isEmpty {
             let cell = NoDataTableViewCell.dequeCellWithTable(tableView)
             return cell
         }
 
         let cell = HomeLocationTableViewCell.dequeCellWithTable(tableView)
-        let location = viewModel.getLocation(index: indexPath.row)
-        let forecastData = viewModel.getLocationForecastData(index: indexPath.row)
+        let location = presenter.getLocation(index: indexPath.row)
+        let forecastData = presenter.getLocationForecastData(index: indexPath.row)
         cell.billData(location, forecastData)
         cell.delegate = self
         return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let count = viewModel.getListLocationCount()
+        let count = presenter.listLocationCount
         return indexPath.section == 0 ? 220.0 : (count == 0 ? 300.0 : 50.0)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            presenter?.doViewCurrentLocationDetail()
-        } else if indexPath.section == 1 && viewModel.getListLocationCount() > 0 {
-            presenter?.doSelectLocation(indexPath)
+            presenter.doViewCurrentLocationDetail(self)
+        } else if indexPath.section == 1 && presenter.listLocationCount > 0 {
+            presenter.doSelectLocation(with: indexPath.row, by: self)
         }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension WeatherHomePageView: WeatherHomePageDelegate {
+    func reloadView() {
+        lblTitle?.text = presenter.title
+        lblUpdate?.text = presenter.lastTimeString
+        tbvMain?.kPullToRefreshStopAnimation()
+        tbvMain?.reloadData()
     }
 }
 
@@ -108,7 +110,7 @@ extension WeatherHomePageView: MGSwipeTableCellDelegate {
             weak var weakSelf = self
             let delete = MGSwipeButton(title: LocalizationStringHelper.remove,
                                      icon: nil,
-                                     backgroundColor: AppColor.redColor,
+                                     backgroundColor: #colorLiteral(red: 0.9294117647, green: 0.3019607843, blue: 0.2392156863, alpha: 1),
                                      padding: 18)
             { (item: MGSwipeTableCell) -> Bool in
                 if let indexPath = weakSelf?.tbvMain?.indexPath(for: cell) {
@@ -124,34 +126,20 @@ extension WeatherHomePageView: MGSwipeTableCellDelegate {
     }
 
     func doRemoveFavorite(_ indexPath: IndexPath) {
-        guard let location = viewModel.getLocation(index: indexPath.row) else {
+        guard let location = presenter.getLocation(index: indexPath.row) else {
             return
         }
 
-        let alert = UIAlertController(title: "Remove".localized + " \(location.name)",
-                                      message: "Do you want remove from favorite list?".localized,
+        let alert = UIAlertController(title: "Remove" + " \(location.name)",
+                                      message: "Do you want remove from favorite list?",
                                       preferredStyle: .alert)
-        let actionRemove = UIAlertAction(title: "Remove".localized, style: .destructive) { [weak self] _ in
-            self?.presenter?.doRemoveLocationFromFavoriteList(location)
+        let actionRemove = UIAlertAction(title: "Remove", style: .destructive) { [weak self] _ in
+            self?.presenter.doRemoveLocationFromFavoriteList(location)
         }
 
-        let actionCancel = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(actionRemove)
         alert.addAction(actionCancel)
         self.present(alert, animated: true, completion: nil)
-    }
-}
-
-extension WeatherHomePageView: WeatherHomePageViewInput {
-    func doReloadView() {
-        lblTitle?.text = viewModel.getTitle()
-        lblUpdate?.text = viewModel.getLastTimeStr()
-        tbvMain?.kPullToRefreshStopAnimation()
-        tbvMain?.reloadData()
-    }
-
-    func doStopLoading() {
-        tbvMain?.kPullToRefreshStopAnimation()
-        tbvMain?.reloadData()
     }
 }

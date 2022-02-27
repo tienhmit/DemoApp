@@ -80,7 +80,7 @@ extension WeatherRequestConditionsType: RequestConditions {
         case let .currentlocation(latitude, longitude), let .anyLocation(latitude, longitude):
             return ["lat": latitude,
                     "lon": longitude,
-                    "appid": "08869d29f8e15af55cd59f0a6127b31f"]
+                    "appid": "4d1a1b39868241cfc34a0c7c8f1186e6"]
         }
     }
     

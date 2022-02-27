@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationDetailView" customModule="WindyDemo2" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationDetailView" customModule="DemoApp" customModuleProvider="target">
             <connections>
                 <outlet property="btnClose" destination="2KY-Gg-Pc5" id="d7E-nX-1hK"/>
                 <outlet property="imvCurrentLocation" destination="V1X-sW-5Yy" id="9dR-X1-ZiY"/>
@@ -42,7 +40,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16°C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMP-Ux-Q2C">
-                            <rect key="frame" x="169" y="106" width="76" height="43"/>
+                            <rect key="frame" x="169.5" y="106" width="75.5" height="43"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="36"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -60,13 +58,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pressure: 1014hPA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLW-az-ueR">
-                            <rect key="frame" x="16" y="194.5" width="97.5" height="13.5"/>
+                            <rect key="frame" x="16" y="194.5" width="98" height="13.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity: 85%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YL4-Go-kLF">
-                            <rect key="frame" x="168" y="169" width="78" height="13.5"/>
+                            <rect key="frame" x="168.5" y="169" width="77" height="13.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -77,8 +75,8 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="6Dx-oH-MUM">
                                     <rect key="frame" x="0.0" y="0.0" width="135" height="24"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_location" translatesAutoresizingMaskIntoConstraints="NO" id="V1X-sW-5Yy">
-                                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="V1X-sW-5Yy">
+                                            <rect key="frame" x="0.0" y="0.5" width="24" height="23"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="24" id="gR6-8Z-hKF"/>
                                                 <constraint firstAttribute="height" constant="24" id="rw5-oB-qID"/>
@@ -93,7 +91,7 @@
                                     </subviews>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="6Dx-oH-MUM" secondAttribute="bottom" id="4Me-3P-9wG"/>
                                 <constraint firstAttribute="trailing" secondItem="6Dx-oH-MUM" secondAttribute="trailing" id="92E-C4-4DM"/>
@@ -102,7 +100,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind: 1.9m/s SE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7j-z6-hgH">
-                            <rect key="frame" x="16" y="169" width="84" height="13.5"/>
+                            <rect key="frame" x="16" y="169" width="84.5" height="13.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -134,15 +132,15 @@
                                 <constraint firstItem="7v2-5e-70u" firstAttribute="leading" secondItem="JTB-fg-f0B" secondAttribute="trailing" id="kUz-DY-3eU"/>
                             </constraints>
                         </view>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_windy_location" translatesAutoresizingMaskIntoConstraints="NO" id="9xP-iS-whR">
-                            <rect key="frame" x="108" y="168" width="16" height="16"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wind" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9xP-iS-whR">
+                            <rect key="frame" x="108.5" y="170" width="16" height="13"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="7tO-Fj-DAg"/>
                                 <constraint firstAttribute="width" constant="16" id="91t-Au-28Q"/>
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstItem="gMP-Ux-Q2C" firstAttribute="top" secondItem="SIg-qg-mWY" secondAttribute="bottom" constant="8" id="2WZ-Bw-2qU"/>
                         <constraint firstAttribute="bottom" secondItem="ZWq-yo-e6I" secondAttribute="bottom" constant="16" id="35p-Bc-VYl"/>
@@ -170,7 +168,7 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map_windy.png" translatesAutoresizingMaskIntoConstraints="NO" id="GEC-1W-LiH">
                     <rect key="frame" x="0.0" y="268" width="414" height="513"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2KY-Gg-Pc5">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2KY-Gg-Pc5">
                     <rect key="frame" x="157" y="800" width="100" height="42"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
@@ -191,8 +189,7 @@
                     </connections>
                 </button>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="dah-0V-NSF"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="dah-0V-NSF" firstAttribute="trailing" secondItem="5Xh-6X-Dh1" secondAttribute="trailing" id="9Bd-cf-0o6"/>
                 <constraint firstItem="GEC-1W-LiH" firstAttribute="top" secondItem="5Xh-6X-Dh1" secondAttribute="bottom" id="N17-oq-D1T"/>
@@ -203,15 +200,13 @@
                 <constraint firstItem="5Xh-6X-Dh1" firstAttribute="top" secondItem="dah-0V-NSF" secondAttribute="top" id="uRs-Tn-six"/>
                 <constraint firstItem="GEC-1W-LiH" firstAttribute="trailing" secondItem="dah-0V-NSF" secondAttribute="trailing" id="zft-ER-aS7"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="dah-0V-NSF"/>
             <point key="canvasLocation" x="-268" y="60"/>
         </view>
     </objects>
     <resources>
-        <image name="ic_location" width="16" height="16"/>
-        <image name="ic_windy_location" width="256" height="256"/>
+        <image name="location.fill" catalog="system" width="128" height="115"/>
         <image name="map_windy.png" width="769" height="513"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="wind" catalog="system" width="128" height="103"/>
     </resources>
 </document>

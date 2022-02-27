@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -26,8 +24,8 @@
                 <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="7Je-7a-GJi">
                     <rect key="frame" x="16" y="75" width="314" height="36"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_search" translatesAutoresizingMaskIntoConstraints="NO" id="cqb-aF-A2c">
-                            <rect key="frame" x="8" y="10" width="16" height="16"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cqb-aF-A2c">
+                            <rect key="frame" x="8" y="11" width="16" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="16" id="S7R-j6-xZx"/>
                                 <constraint firstAttribute="height" constant="16" id="cmL-zJ-OdR"/>
@@ -70,7 +68,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="localizeKey" value="Enter city name to search"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsx-EQ-RUa">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsx-EQ-RUa">
                     <rect key="frame" x="346" y="78" width="52" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="52" id="ZLH-Cv-Hxc"/>
@@ -82,14 +80,14 @@
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="U7g-Jn-H6o">
                     <rect key="frame" x="0.0" y="127" width="414" height="735"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="FeL-jF-DgB"/>
                         <outlet property="delegate" destination="-1" id="36M-Tw-ZWY"/>
                     </connections>
                 </tableView>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No search result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mH-1g-kur">
-                    <rect key="frame" x="119" y="438.5" width="176.5" height="29"/>
+                    <rect key="frame" x="118.5" y="438.5" width="177" height="29"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -98,8 +96,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="U7g-Jn-H6o" firstAttribute="top" secondItem="7Je-7a-GJi" secondAttribute="bottom" constant="16" id="0Hg-gv-cmn"/>
                 <constraint firstItem="U7g-Jn-H6o" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="9dE-DM-Q4K"/>
@@ -116,13 +113,11 @@
                 <constraint firstItem="7Je-7a-GJi" firstAttribute="top" secondItem="KsZ-Vl-JFR" secondAttribute="bottom" constant="8" id="vES-jG-i8B"/>
                 <constraint firstItem="9mH-1g-kur" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="zi3-k2-cNy"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="140.57971014492756" y="131.91964285714286"/>
         </view>
     </objects>
     <resources>
-        <image name="ic_search" width="16" height="16"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
     </resources>
 </document>

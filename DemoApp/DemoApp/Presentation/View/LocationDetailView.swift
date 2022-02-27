@@ -1,15 +1,17 @@
 //
-// Created by AUTHOR
-// Copyright (c) YEAR AUTHOR. All rights reserved.
+//  LocationDetailViewController.swift
+//  DemoApp
+//
+//  Created by Hoang Manh Tien on 2/27/22.
+//  Copyright © 2022 Hoang Manh Tien. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class LocationDetailView: BaseViewController
-{
-    var presenter: LocationDetailViewOutput?
-    weak var viewModel: LocationDetailViewModelOutput!
+class LocationDetailView: BaseViewController {
+    private var presenter = LocationDetailPresenter.shared
+    var viewModel = LocationDetailViewModel()
     
     @IBOutlet weak var btnClose: UIButton!
     @IBOutlet weak var lblLocationName: UILabel!
@@ -27,56 +29,53 @@ class LocationDetailView: BaseViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.viewDidLoad()
-        doReloadView()
+        reloadView()
+        presenter.locationDetailDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter?.viewWillAppear()
     }
     
     // MARK:
     // MARK:  IBACTIONS
     @IBAction func btnClosePressed(_ sender: Any) {
-        presenter?.doClosePressed()
+        dismiss(animated: true, completion: nil)
     }
 }
-
-extension LocationDetailView: LocationDetailViewInput {
-    func doReloadView() {
-        lblUV.text = "UV index".localized + ": -"
+extension LocationDetailView: LocationDetailDelegate {
+    func reloadView() {
+        lblUV.text = "UV index" + ": -"
         imvCurrentLocation.isHidden = !viewModel.getIsCurrentLocation()
         
         guard let data = viewModel.getForcastWeatherData()?.current else {
-            lblLocationName.text = "Current Location".localized
+            lblLocationName.text = "Current Location"
             lblTemp.text = "-"
-            lblWind.text = "Wind".localized + ": -"
-            lblHumidity.text = "Humidity".localized + ": -"
-            lblPressure.text = "Pressure".localized + ": -"
-            lblVisibility.text = "Visibility".localized + ": -"
-            lblDewPoint.text = "Dew point".localized + ": -"
+            lblWind.text = "Wind" + ": -"
+            lblHumidity.text = "Humidity" + ": -"
+            lblPressure.text = "Pressure" + ": -"
+            lblVisibility.text = "Visibility" + ": -"
+            lblDewPoint.text = "Dew point" + ": -"
             lblWeatherDesc.text = ""
             imvWeather.image = nil
             imvWind.isHidden = true
             lblLocationName.text = "-"
-            lblUV.text = "UV index".localized + ": -"
+            lblUV.text = "UV index" + ": -"
             return
         }
         
         imvWind.isHidden = false
         imvWind.transform = CGAffineTransform(rotationAngle: CGFloat(data.wind_deg*(Double.pi/180)))
-        DLog("windInfor.deg: \(data.wind_deg)")
         
-        lblLocationName.text = viewModel?.getLocationName()?.capitalized
+        lblLocationName.text = viewModel.getLocationName()?.capitalized
         lblTemp.text = String(format: "%.0f°C", data.temp.tempK2C)
-        lblWind.text = String(format: "%@: %.1fm/s %@", "Wind".localized, data.wind_speed, data.wind_deg.windDegSymbol)
-        lblHumidity.text = "Humidity".localized + ": \(Int(data.humidity))%"
+        lblWind.text = String(format: "%@: %.1fm/s %@", "Wind", data.wind_speed, data.wind_deg.windDegSymbol)
+        lblHumidity.text = "Humidity" + ": \(Int(data.humidity))%"
         
-        lblPressure.text = "Pressure".localized + ": \(Int(data.pressure))hPa"
-        lblVisibility.text = String(format: "%@: %.1fkm", "Visibility".localized, data.visibility/1000)
-        lblDewPoint.text = String(format: "%@: %.0f°C", "Dew point".localized , data.dew_point.tempK2C)
-        lblUV.text = "UV index".localized + ": \(data.uvi)"
+        lblPressure.text = "Pressure" + ": \(Int(data.pressure))hPa"
+        lblVisibility.text = String(format: "%@: %.1fkm", "Visibility", data.visibility/1000)
+        lblDewPoint.text = String(format: "%@: %.0f°C", "Dew point" , data.dew_point.tempK2C)
+        lblUV.text = "UV index" + ": \(data.uvi)"
         
         let weather = data.weather.first
         lblWeatherDesc.text = weather?.desc.capitalizingFirstLetter()
